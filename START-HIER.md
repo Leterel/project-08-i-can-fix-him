@@ -31,4 +31,4 @@ lokalen Stand löschen; vorher exportieren. Kein Cloudkonto, keine Serverübertr
 Touchprüfung erfolgte in Chrome-Emulation, nicht auf einem physischen Handy.
 Spielbarer Prototyp, kein fertiges Vollspiel.
 
-Quellen: https://github.com/Leterel/i-can-fix-him
+Quellen: https://github.com/Leterel/project-08-i-can-fix-him
