@@ -25,6 +25,14 @@ export function update(s,dt,keys={}){
 }
 export function interact(s){if(s.ending)return;const npc=nearest(s);if(!npc){log(s,'Niemand in Gesprächsreichweite. WASD: hingehen.');return;}s.dialog=npc.id;npc.visits++;}
 export function closeDialog(s){s.dialog=null;}
+export function dialogueFor(s,id=s.dialog){
+ const n=s.npcs.find(n=>n.id===id);if(!n)return null;
+ if(n.id==='ronny'&&n.visits>=2&&n.trust>=1){
+  if(n.trust>=3)return {variant:'ronny-progress',line:'Ich habe meinen Termin selbst organisiert. Sogar den Wecker. Du musst diesmal wirklich nichts übernehmen. Komisches Gefühl, diese Eigenverantwortung.',choices:['Seinen Erfolg anerkennen, ohne ihn zu übernehmen','Bei deiner Grenze bleiben und weitergehen','Seinen Erfolg als deinen Verdienst verkaufen']};
+  return {variant:'ronny-followup',line:'Okay, deine Grenze steht noch. Ich habe einen eigenen Plan angefangen. Kannst du kurz zuhören, ohne ihn gleich für mich zu erledigen?',choices:['Zuhören, Verantwortung bei ihm lassen','Heute keine Kapazität: freundlich bei der Grenze bleiben','Seinen Neustart doch finanzieren · 10 €']};
+ }
+ return {variant:'first',line:n.line,choices:[...n.choices]};
+}
 export function consequences(s){s.chaos=clamp(s.chaos,0,100);s.suspicion=clamp(s.suspicion,0,100);s.energy=clamp(s.energy,0,100);s.money=Math.max(0,s.money);
   if(s.chaos>=50&&!s.closed){s.closed=true;log(s,'Der Kiosk schließt wegen „atmosphärischer Unzumutbarkeit“. Uwe verkauft jetzt nur noch Luft.');}
   if(s.suspicion>=60&&!s.fineIssued){s.fineIssued=true;s.money=Math.max(0,s.money-12);log(s,'Das Amt kassiert 12 € Unruhepauschale. Deine Quittung ist ein enttäuschter Blick.');}
@@ -36,6 +44,13 @@ export function choose(s,index){const n=s.npcs.find(n=>n.id===s.dialog);if(!n||!
   const boundary=()=>{if(!s.boundaryPeople.includes(n.id)){s.boundaryPeople.push(n.id);s.boundaries++;}};
   if(n.trust<=-3){s.suspicion+=5;log(s,`${n.name} spricht nach deinen Schubsereien nur noch über die Gegensprechanlage. Ein anderer Weg bleibt offen.`);consequences(s);return;}
   const charge=cost=>{if(s.money<cost){log(s,'Zu wenig Geld. Zum ersten Mal schützt dich dein Kontostand.');return false;}s.money-=cost;s.energy-=14;return true;};
+  const encounter=dialogueFor(s,n.id);
+  if(encounter.variant==='ronny-followup'||encounter.variant==='ronny-progress'){
+    if(index===0){n.trust++;s.suspicion-=4;if(encounter.variant==='ronny-progress'){s.energy+=2;log(s,'Ronny hat seinen Termin selbst organisiert. Vertrauen +1, Misstrauen −4. Du musst seinen Erfolg nicht besitzen.');}else{s.energy-=3;log(s,'Du hörst zu, ohne Ronnys Plan zu übernehmen. Vertrauen +1, Energie −3, Misstrauen −4. Seine Verantwortung bleibt bei ihm.');}}
+    if(index===1){boundary();s.energy+=8;log(s,'„Heute nicht, mein Feierabend bleibt frei.“ Ronny akzeptiert die Grenze. Energie +8; dieselbe Grenze zählt nicht doppelt.');}
+    if(index===2){if(encounter.variant==='ronny-progress'){n.trust-=2;s.chaos+=12;s.suspicion+=8;s.money+=3;log(s,'Du vermarktest Ronnys Fortschritt als deine Leistung. 3 € Honorar, Vertrauen −2, Chaos +12, Misstrauen +8.');}else if(charge(10)){n.trust--;s.suspicion+=6;log(s,'Du bezahlst Ronnys Neustart doch selbst. 10 € und 14 Energie weg, Vertrauen −1: Seine Verantwortung landet wieder bei dir.');}}
+    consequences(s);return;
+  }
   if(n.id==='ronny'){
     if(index===0&&charge(20)){s.suspicion+=12;log(s,'Ronny investiert deine 20 € in ein „Entschuldigungs-Abo“. Deine Energie: −14.');}
     if(index===1){boundary();s.energy+=6;n.trust++;log(s,'Du bist kein Sanierungsunternehmen. Ronny schmollt, deine Grenze bleibt.');}

@@ -21,7 +21,7 @@ Tests: `npm test; node test/browser-pause.mjs; node test/browser-focus.mjs`. Bei
 - Projektwerkzeuge ändern keine anderen Projektquellen. Build-/Testartefakte in isolierten, ignorierten Arbeitsordnern halten. Vorhandene Ausgaben nicht unbesehen überschreiben.
 
 ## Nächste sichere Etappe
-Eine kleine verzweigte Begegnung mit nachvollziehbaren Folgen ergänzen, statt bestehende Mechaniken zu ersetzen.
+Ronnys Folgebegegnung ist implementiert und lokal geprüft. Als Nächstes Spielfluss, verständliche Konsequenzen und Schwierigkeit mit einer Testperson abnehmen.
 
 ## Übergabe
 HANDOFF.md aktualisieren: Ausgangscommit/Branch, konkrete Änderungsliste, ausgeführte Befehle, Ergebnis, ausgelassene Tests samt Grund, Risiken und nächste Etappe. Nur tatsächlich ausgeführte Tests als bestanden ausweisen. Vor Merge Diff und Tests prüfen; externe Freigaben bleiben offen.

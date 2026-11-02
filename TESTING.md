@@ -19,3 +19,9 @@ Bei fehlenden Paketen/Hardware/Betriebssystemen ist das Ergebnis „nicht ausgef
 
 ## Vor Merge
 `git diff --check` ausführen; relevante Funktionstests wiederholen, wenn Codeänderungen ihren Befund entwerten. Speicherdaten/alte Versionen erhalten. Fehlende externe Abnahmen in HANDOFF.md benennen.
+
+## Neue Folgebegegnung am 02.11.2026
+
+`node --test test/*.test.mjs`: 14 Gruppen bestanden. Drei neue Gruppen prüfen Kontextbedingungen, unterschiedliche Kosten/Folgen, kein mehrfacher Grenzgewinn, Geldmangel, Erschöpfung und Rekonstruktion aus vorhandenen V1-Feldern.
+
+`node test/browser-encounter.mjs`: drei Gruppen bestanden. Tatsächliche Dialogbuttons führen von Grenze→Zuhören→Eigenverantwortung, Save/Reload bewahrt den Kontext, fremden Fortschritt vermarkten senkt Vertrauen, erneute Finanzierung kostet Ressourcen, Touch öffnet weiterhin den Dialog bei 390px. Synthetischer V1-Startstand nahe Ronny; keine Nutzer-Spielstände verwendet. Bestehende `browser-save.mjs`- und `browser-pause.mjs`-Regressionsläufe anschließend bestanden. Neuer Fokusverlust-/OS-Sperrtest wurde nicht wiederholt, weil dessen Logik unverändert ist. Screenshotnachweise in test-results/encounter.

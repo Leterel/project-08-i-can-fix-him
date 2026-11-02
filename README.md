@@ -9,7 +9,7 @@ Keine Übernahme fremder Assets oder Quelltexte.
 
 Der Nutzer hat **„Offene Trash-Sandbox mit absurden NPCs und Konsequenzen“**
 gewählt. Implementiert ist ein lokaler Desktop-Browserprototyp: freie Bewegung
-im Betonbezirk, vier erwachsene NPCs, zwölf Dialogentscheidungen, nichtgrafisches
+im Betonbezirk, vier erwachsene NPCs, zwölf Basisentscheidungen und sechs kontextabhängige Folgeentscheidungen, nichtgrafisches
 Chaos und sichtbare soziale/finanzielle Folgen. Kein Gewalt-Speedrun.
 
 ### Start
@@ -141,3 +141,9 @@ ist keine Prüfung aller Betriebssystem-Minimier- oder Bildschirm-Sperrpfade.
 ## Entwicklung und Übergabe
 
 [AGENTS.md](AGENTS.md) bündelt den Einstieg für Entwickler und KI-Agenten; [TESTING.md](TESTING.md) nennt reproduzierbare Prüfungen und deren Grenzen. Der aktuelle Übergabestand steht in [HANDOFF.md](HANDOFF.md).
+
+## Ronny: Verantwortung bleibt bei ihm
+
+Nach einer klaren Grenze erinnert sich Ronny beim nächsten Gespräch daran. Du kannst zuhören, freundlich bei deiner Grenze bleiben oder erneut Geld übernehmen. Zuhören kostet etwas Energie und erhöht Vertrauen; weiteres Finanzieren kostet 10 € und 14 Energie und senkt Vertrauen. Bei genügend Vertrauen organisiert er seinen Termin selbst. Diesen Fortschritt kannst du anerkennen oder für 3 € als eigene Leistung vermarkten – mit Vertrauensverlust und mehr Chaos. Das Viertel zeigt die Folgen im Journal und in den Spielwerten.
+
+Keine neue Questwährung oder Saveversion: Die Begegnung wird aus bestehenden Besuchs-/Vertrauenswerten rekonstruiert. Alte V1-Spielstände, NPC-IDs und Erstgespräche bleiben gültig. Dieselbe Grenze zählt weiterhin nur einmal. 14 Modell-/Save-/Navigationsgruppen und die neue Browserbegegnung bestehen; bestehende Save- und Pause-Browserregression ebenfalls bestanden. Kein Ersatz für einen Spieltest mit Menschen.
