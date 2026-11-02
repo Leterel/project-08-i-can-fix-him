@@ -128,3 +128,16 @@ Zeitvergleiche, gespeicherte Schichten und emuliertes Touch. visibilitychange wu
 in dieser Automationsumgebung als ausdrücklich synthetische Listener-Integration
 getestet: Chrome meldete beim nativen Tabwechsel weiterhin visible. Kein bestätigter
 OS-Tab-/Minimiernachweis. Näheres: VERIFICATION-20261026.md.
+
+## Fokusverlust — 02.11.2026
+
+Auch der Verlust des Fensterfokus pausiert jetzt die Schicht und verwirft
+gehaltene Eingaben. So wartet das Spiel auch dann, wenn eine Umgebung beim
+Tabwechsel weiterhin `visible` meldet. Rückkehr setzt nicht automatisch fort.
+`node test/browser-focus.mjs` prüft einen tatsächlichen Wechsel zwischen zwei
+isolierten Browser-Tabs ohne synthetische Sichtbarkeits-/Fokusereignisse. Das
+ist keine Prüfung aller Betriebssystem-Minimier- oder Bildschirm-Sperrpfade.
+
+## Entwicklung und Übergabe
+
+[AGENTS.md](AGENTS.md) bündelt den Einstieg für Entwickler und KI-Agenten; [TESTING.md](TESTING.md) nennt reproduzierbare Prüfungen und deren Grenzen. Der aktuelle Übergabestand steht in [HANDOFF.md](HANDOFF.md).
